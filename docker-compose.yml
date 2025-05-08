@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:16.1
+    container_name: user-subscription-db
+    environment:
+      POSTGRES_DB: user_subscription_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      timeout: 5s
+      interval: 5s
+      retries: 10
+
+  app:
+    image: igladkikh/user-subscription:1.0
+    container_name: user-subscription-app
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/user_subscription_db
