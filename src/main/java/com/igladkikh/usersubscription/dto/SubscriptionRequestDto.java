@@ -5,7 +5,7 @@ import com.igladkikh.usersubscription.model.ServiceName;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import util.DateUtil;
+import com.igladkikh.usersubscription.util.DateUtil;
 
 import java.time.LocalDate;
 

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import util.Marker;
+import com.igladkikh.usersubscription.util.Marker;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)

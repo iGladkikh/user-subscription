@@ -20,7 +20,7 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.format.annotation.DateTimeFormat;
-import util.DateUtil;
+import com.igladkikh.usersubscription.util.DateUtil;
 
 import java.time.LocalDate;
 import java.util.Objects;

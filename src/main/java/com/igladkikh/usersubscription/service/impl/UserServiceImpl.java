@@ -6,20 +6,26 @@ import com.igladkikh.usersubscription.dto.mapper.UserMapper;
 import com.igladkikh.usersubscription.exception.AppException;
 import com.igladkikh.usersubscription.model.User;
 import com.igladkikh.usersubscription.repository.UserRepository;
+import com.igladkikh.usersubscription.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import com.igladkikh.usersubscription.util.CacheUtil;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UserServiceImpl implements com.igladkikh.usersubscription.service.UserService {
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final CacheUtil cacheUtil;
 
     @Override
+    @Cacheable(value = CacheUtil.USER_CACHE_ID, key = "#id")
     public UserResponseDto findById(Long id) {
         return userMapper.toResponseDto(findEntity(id));
     }
@@ -32,6 +38,7 @@ public class UserServiceImpl implements com.igladkikh.usersubscription.service.U
     }
 
     @Override
+    @CacheEvict(value = CacheUtil.USER_CACHE_ID, key = "#id")
     public UserResponseDto update(Long id, UserRequestDto dto) {
         User user = findEntity(id);
         userMapper.updateEntityFromDto(dto, user);
@@ -40,8 +47,12 @@ public class UserServiceImpl implements com.igladkikh.usersubscription.service.U
     }
 
     @Override
+    @CacheEvict(value = CacheUtil.USER_CACHE_ID, key = "#id")
     public void delete(Long id) {
         userRepository.delete(findEntity(id));
+        // Очищаем связанный кэш
+        cacheUtil.evictUserSubscriptionsCache(id);
+        cacheUtil.clearTopSubscriptionCache();
     }
 
     @Override

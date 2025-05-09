@@ -35,7 +35,7 @@ public class User {
     private String name;
     @Column(nullable = false, unique = true)
     private String email;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private Set<Subscription> subscriptions;
 
     @PrePersist

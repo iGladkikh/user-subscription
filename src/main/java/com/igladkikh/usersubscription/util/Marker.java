@@ -1,4 +1,4 @@
-package util;
+package com.igladkikh.usersubscription.util;
 
 public interface Marker {
     interface OnCreate {
