@@ -1,5 +1,6 @@
 package com.igladkikh.usersubscription.controller;
 
+import com.igladkikh.usersubscription.annotation.LogMethodArgs;
 import com.igladkikh.usersubscription.dto.ServiceStatisticDto;
 import com.igladkikh.usersubscription.dto.SubscriptionRequestDto;
 import com.igladkikh.usersubscription.dto.SubscriptionResponseDto;
@@ -38,6 +39,7 @@ public class SubscriptionController implements SubscriptionControllerApi {
     }
 
     @Override
+    @LogMethodArgs
     @PostMapping("/users/{userId}/subscriptions")
     @ResponseStatus(HttpStatus.CREATED)
     public SubscriptionResponseDto create(@PathVariable Long userId, @Valid @RequestBody SubscriptionRequestDto dto) {

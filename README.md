@@ -12,6 +12,7 @@
 * Swagger
 * Docker
 * Redis
+* AOP
 
 ### Функционал
 1. API для управления пользователями
@@ -31,7 +32,9 @@
 - Таблицы: users, subscriptions.
 4. Логирование
 - Логирование через SLF4J.\
-Логирование осуществляется в классе ErrorHandlingControllerAdvice и классах сущностей с использованием аннотаций @PrePersist, @PostPersist, @PreRemove, @PostRemove.
+Логирование осуществляется в классе ErrorHandlingControllerAdvice и классах сущностей с использованием аннотаций @PrePersist, @PostPersist, @PreRemove, @PostRemove.\
+Также реализовано логирование посредством AOP.\
+Класс LoggingAspect предназначен для логирования аргументов методов, помеченных кастомной аннотацией @LogMethodArgs
 5. Docker
 - Создан Dockerfile для развертывания сервиса.
 - Разработан docker-compose.yml, который позволяет локально запускать проект

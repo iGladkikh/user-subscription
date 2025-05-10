@@ -1,5 +1,6 @@
 package com.igladkikh.usersubscription.controller;
 
+import com.igladkikh.usersubscription.annotation.LogMethodArgs;
 import com.igladkikh.usersubscription.openapi.UserControllerApi;
 import com.igladkikh.usersubscription.dto.UserRequestDto;
 import com.igladkikh.usersubscription.dto.UserResponseDto;
@@ -32,6 +33,7 @@ public class UserController implements UserControllerApi {
     }
 
     @Override
+    @LogMethodArgs
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Validated({Marker.OnCreate.class})
@@ -40,6 +42,7 @@ public class UserController implements UserControllerApi {
     }
 
     @Override
+    @LogMethodArgs
     @PutMapping("/{id}")
     public UserResponseDto update(@PathVariable Long id, @RequestBody @Valid UserRequestDto dto) {
         return userService.update(id, dto);
