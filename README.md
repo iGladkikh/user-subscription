@@ -13,6 +13,7 @@
 * Docker
 * Redis
 * AOP
+* Spring Cloud Config
 
 ### Функционал
 1. API для управления пользователями
