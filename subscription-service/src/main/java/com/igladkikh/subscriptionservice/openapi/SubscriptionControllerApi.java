@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
-@Tag(name = "2. Subscription controller")
+@Tag(name = "Subscription controller")
 public interface SubscriptionControllerApi {
 
     @Operation(summary = "${api.sub.get.top.summary}")

@@ -13,7 +13,9 @@
     <name>User subscriptions</name>
     <modules>
         <module>config-server</module>
-        <module>user-subscription-service</module>
+        <module>eureka-server</module>
+        <module>user-service</module>
+        <module>subscription-service</module>
     </modules>
 
     <groupId>com.igladkikh</groupId>
